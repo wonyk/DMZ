@@ -1,6 +1,7 @@
 import '../../node_modules/kontra/kontra'
 import test1 from '../img/test1.jpg'
 import test2 from '../img/test2.jpg'
+import { starting, common, rare } from '../data/data.json'
 const letters = {
   'A': [
     [, 1],
@@ -337,12 +338,14 @@ File and image imports
 
 /*
 =======================================================================================
-KONTRA store
+KONTRA browser constants and defaults
 =======================================================================================
 */
+let score = 0
+let mainPicIndex = 0
+let randomCardObject = {}
 
-// Save the highscore
-kontra.store.set('highscore', 0)
+randomCardObject = common[0]
 
 /*
 ========================================================================================
@@ -351,13 +354,14 @@ SPRITES and MISC
 */
 
 let highscore = kontra.sprite({
-  update: function () {
-    let a = kontra.store.get('highscore')
-    kontra.store.set('highscore', a++)
-  },
+  // update: function () {
+  //   let a = kontra.store.get('highscore')
+  //   kontra.store.set('highscore', a++)
+  // },
   render: function () {
     // draw (x, y, text, size)
-    draw(15, 15, `Days:${kontra.store.get('highscore')}`, 10)
+    // draw(15, 15, `Days:${kontra.store.get('highscore')}`, 10)
+    draw(15, 15, `Days:${Math.round(score)}`, 10)
   }
 })
 
@@ -376,36 +380,74 @@ let stats = kontra.sprite({
   }
 })
 
+// The width of the bars are twice the length of the actual percentage, so we can do
+// 0.5% deduction in the game
 let serverBar = kontra.sprite({
   x: 1025,
   y: 165,
   color: 'red',
-  width: 200,
-  height: 15
+  width: 100,
+  height: 15,
+  render: function () {
+    this.draw()
+    this.context.strokeStyle = 'red'
+    this.context.lineWidth = 1
+    this.context.strokeRect(this.x, this.y, 200, this.height)
+  }
 })
+
 
 let moneyBar = kontra.sprite({
   x: 1025,
   y: 225,
   color: 'gold',
-  width: 200,
-  height: 15
+  width: 100,
+  height: 15,
+  render: function () {
+    this.draw()
+    this.context.strokeStyle = 'gold'
+    this.context.lineWidth = 1
+    this.context.strokeRect(this.x, this.y, 200, this.height)
+  }
 })
 
 let trustBar = kontra.sprite({
   x: 1025,
   y: 285,
   color: 'green',
-  width: 200,
-  height: 15
+  width: 100,
+  height: 15,
+  render: function () {
+    this.draw()
+    this.context.strokeStyle = 'green'
+    this.context.lineWidth = 1
+    this.context.strokeRect(this.x, this.y, 200, this.height)
+  }
+})
+
+let hellNoButton = kontra.sprite({
+  x: 845,
+  y: 520,
+  color: 'red',
+  width: 175,
+  height: 100
+})
+
+let dealButton = kontra.sprite({
+  x: 1060,
+  y: 520,
+  color: 'green',
+  width: 175,
+  height: 100
 })
 
 let image = new Image()
 image.src = test1
 
-setTimeout(function () {
-  image.src = test2
-}, 10000)
+// setTimeout(function () {
+//   image.src = test2
+//   kontra.store.set('highscore', 1)
+// }, 10000)
 let mainImage = kontra.sprite({
   x: 330,
   y: 120,
@@ -421,8 +463,11 @@ GAMELOOP
 */
 // let startLoop = function () {
 let loop = kontra.gameLoop({ // create the main game loop
+  // clearCanvas: false,
+  fps: 20,
   update () { // update the game state
-    highscore.update()
+    // highscore.update()
+    // serverBar.update()
   },
   render () { // render the game state
     highscore.render()
@@ -432,6 +477,8 @@ let loop = kontra.gameLoop({ // create the main game loop
     serverBar.render()
     moneyBar.render()
     trustBar.render()
+    hellNoButton.render()
+    dealButton.render()
   }
 })
 // }
@@ -445,10 +492,28 @@ let loop = kontra.gameLoop({ // create the main game loop
 //   loop.stop()
 // })
 
+kontra.keys.bind('left', (e) => {
+  e.preventDefault()
+  kontra.store.set('highscore', 2)
+  image.src = test2
+})
+
 /*
-   ======================================================================================
-   MOUSE / POINTER commands
-   =====================================================================================
-   */
+==========================================================================================
+MOUSE / POINTER
+============================================================================================
+*/
+kontra.pointer.track(hellNoButton)
+kontra.pointer.track(dealButton)
+kontra.pointer.onDown((event, object) => {
+  if (object === hellNoButton) {
+    serverBar.width += (randomCardObject.meh.server)
+    score += randomCardObject.days
+  }
+  if (object === dealButton) {
+    kontra.store.set('highscore', 5)
+    image.src = test1
+  }
+})
 
 loop.start()

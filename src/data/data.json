@@ -1,0 +1,50 @@
+{   
+    "starting": {
+        "index": 0,
+        "title": "Rules and Start Card",
+        "src": "",
+        "days": 0,
+        "deal": {
+            "server": 0,
+            "money": 0,
+            "trust": 0
+        },
+        "meh": {
+            "server": 0,
+            "money": 0,
+            "trust": 0
+        }
+    },
+    "common": [{
+        "index": 0,
+        "title": "Card 1",
+        "days": 0.3,
+        "src": "",
+        "deal": {
+            "server": -10,
+            "money": 5,
+            "trust": 5
+        },
+        "meh": {
+            "server": 20,
+            "money": -20,
+            "trust": -10
+        }
+    }],
+    "rare": [{
+        "index": 0,
+        "title": "Rare 1",
+        "src": "",
+        "days": 1,
+        "deal": {
+            "server": 40,
+            "money": 30,
+            "trust": 40
+        },
+        "meh": {
+            "server": 0,
+            "money": 0,
+            "trust": 0
+        }
+    }]
+}
