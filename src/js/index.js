@@ -1,4 +1,6 @@
 import '../../node_modules/kontra/kontra'
+import test1 from '../img/test1.jpg'
+import test2 from '../img/test2.jpg'
 const letters = {
   'A': [
     [, 1],
@@ -321,43 +323,132 @@ function draw (posX, posY, string, size) {
   }
 }
 
+/*
+=====================================================================================
+File and image imports
+=====================================================================================
+*/
+// kontra.assets.load(test1)
+//   .then(function () {
+//     startLoop()
+//   }).catch(function (err) {
+//     console.log(err)
+//   })
+
+/*
+=======================================================================================
+KONTRA store
+=======================================================================================
+*/
+
 // Save the highscore
 kontra.store.set('highscore', 0)
 
+/*
+========================================================================================
+SPRITES and MISC
+=======================================================================================
+*/
+
 let highscore = kontra.sprite({
+  update: function () {
+    let a = kontra.store.get('highscore')
+    kontra.store.set('highscore', a++)
+  },
   render: function () {
     // draw (x, y, text, size)
     draw(15, 15, `Days:${kontra.store.get('highscore')}`, 10)
   }
+})
 
+let gameTitle = kontra.sprite({
+  render: function () {
+    draw(500, 15, 'DMZ', 10)
+  }
 })
 
 let stats = kontra.sprite({
   render: function () {
-    draw(1000,15, 'STATS', 10)
+    draw(970, 15, 'STATS', 10)
+    draw(900, 160, 'Server', 4)
+    draw(900, 220, 'Money', 4)
+    draw(900, 280, 'Trust', 4)
   }
 })
 
+let serverBar = kontra.sprite({
+  x: 1025,
+  y: 165,
+  color: 'red',
+  width: 200,
+  height: 15
+})
+
+let moneyBar = kontra.sprite({
+  x: 1025,
+  y: 225,
+  color: 'gold',
+  width: 200,
+  height: 15
+})
+
+let trustBar = kontra.sprite({
+  x: 1025,
+  y: 285,
+  color: 'green',
+  width: 200,
+  height: 15
+})
+
+let image = new Image()
+image.src = test1
+
+setTimeout(function () {
+  image.src = test2
+}, 10000)
 let mainImage = kontra.sprite({
   x: 330,
   y: 120,
-  width: 470,
-  height: 550
+  // width: 470,
+  // height: 550,
+  image
 })
 
+/*
+========================================================================================
+GAMELOOP
+========================================================================================
+*/
+// let startLoop = function () {
 let loop = kontra.gameLoop({ // create the main game loop
   update () { // update the game state
     highscore.update()
   },
   render () { // render the game state
     highscore.render()
-    mainImage.render(),
+    gameTitle.render()
+    mainImage.render()
     stats.render()
+    serverBar.render()
+    moneyBar.render()
+    trustBar.render()
   }
 })
+// }
 
-kontra.keys.bind('p', () => {
-  loop.stop()
-})
+/*
+  =======================================================================================
+  KEYBOARD
+  =======================================================================================
+  */
+// kontra.keys.bind('p', () => {
+//   loop.stop()
+// })
 
-loop.start() // start the game
+/*
+   ======================================================================================
+   MOUSE / POINTER commands
+   =====================================================================================
+   */
+
+loop.start()
