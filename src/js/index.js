@@ -339,12 +339,6 @@ function draw (posX, posY, string, size) {
 File and image imports
 =====================================================================================
 */
-// kontra.assets.load(test1)
-//   .then(function () {
-//     startLoop()
-//   }).catch(function (err) {
-//     console.log(err)
-//   })
 
 // Audio Loading
 // create the audio context
@@ -521,7 +515,8 @@ MAIN GAME FUNCTION
 const changeCard = (selection) => {
   const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max))
   console.log(arrayCommon.length)
-  if (arrayCommon.length === 1) {
+  console.log(common)
+  if (arrayCommon.length < 2 && !gameEnded) {
     arrayCommon = common.slice(0)
   }
   // For starting rule cards
@@ -537,9 +532,9 @@ const changeCard = (selection) => {
   }
 
   // Edit the Stats Bar then checked for issues
-  serverBar.width += (randomCardObject[selection].server * 2)
-  moneyBar.width += (randomCardObject[selection].money * 2)
-  trustBar.width += (randomCardObject[selection].trust * 2)
+  serverBar.width += (randomCardObject[selection].server)
+  moneyBar.width += (randomCardObject[selection].money)
+  trustBar.width += (randomCardObject[selection].trust)
 
   // Process higher limit
   if (serverBar.width > 200) {
@@ -553,27 +548,24 @@ const changeCard = (selection) => {
   }
   // Process lower limit
   if (trustBar.width <= 0) {
+    console.log('trust low')
     trustBar.width = 0
     image.src = imagePath('./endTrust.jpg')
     gameEnded = true
   }
   if (serverBar.width <= 0) {
+    console.log('server low')
     serverBar.width = 0
     image.src = imagePath('./endServer.jpg')
     gameEnded = true
   }
   if (moneyBar.width <= 0) {
+    console.log('money low')
     moneyBar.width = 0
     image.src = imagePath('./endMoney.jpg')
     gameEnded = true
     // This part below comes only if the player have low health but not dead
-  } else if (isRare) {
-    mainPicIndex = getRandomInt(arrayCommon.length)
-    score += randomCardObject.days
-    randomCardObject = arrayCommon[mainPicIndex]
-    image.src = imagePath(randomCardObject.src)
-    isRare = false
-  } else if ((trustBar.width <= 20 || moneyBar.width <= 20 || serverBar.width <= 20) && !rareAppeared) {
+  } else if ((trustBar.width <= 20 || moneyBar.width <= 20 || serverBar.width <= 20) && !rareAppeared && !gameEnded) {
     // Some help so that players dont die too quickly
     arrayCommon.splice(mainPicIndex, 1)
     score += randomCardObject.days
@@ -581,6 +573,12 @@ const changeCard = (selection) => {
     image.src = imagePath(randomCardObject.src)
     rareAppeared = true
     isRare = true
+  } else if (isRare) {
+    mainPicIndex = getRandomInt(arrayCommon.length)
+    score += randomCardObject.days
+    randomCardObject = arrayCommon[mainPicIndex]
+    image.src = imagePath(randomCardObject.src)
+    isRare = false
   } else {
     arrayCommon.splice(mainPicIndex, 1)
     score += randomCardObject.days
@@ -743,7 +741,7 @@ kontra.keys.bind('enter', (e) => {
   if (gameEnded) {
     score = 0
     mainPicIndex = 0
-    arrayCommon = common
+    arrayCommon = common.slice(0)
     rareAppeared = false
     gameEnded = false
     randomCardObject = starting
