@@ -549,16 +549,19 @@ const changeCard = (selection) => {
     trustBar.width = 0
     image.src = imagePath('./endTrust.jpg')
     gameEnded = true
+    return
   }
   if (serverBar.width <= 0) {
     serverBar.width = 0
     image.src = imagePath('./endServer.jpg')
     gameEnded = true
+    return
   }
   if (moneyBar.width <= 0) {
     moneyBar.width = 0
     image.src = imagePath('./endMoney.jpg')
     gameEnded = true
+    return
     // This part below comes only if the player have low health but not dead
   } else if ((trustBar.width <= 20 || moneyBar.width <= 20 || serverBar.width <= 20) && !rareAppeared && !gameEnded) {
     // Some help so that players dont die too quickly
