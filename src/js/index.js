@@ -514,8 +514,6 @@ MAIN GAME FUNCTION
 // Change Card and Update Score
 const changeCard = (selection) => {
   const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max))
-  console.log(arrayCommon.length)
-  console.log(common)
   if (arrayCommon.length < 2 && !gameEnded) {
     arrayCommon = common.slice(0)
   }
@@ -532,9 +530,9 @@ const changeCard = (selection) => {
   }
 
   // Edit the Stats Bar then checked for issues
-  serverBar.width += (randomCardObject[selection].server)
-  moneyBar.width += (randomCardObject[selection].money)
-  trustBar.width += (randomCardObject[selection].trust)
+  serverBar.width += (randomCardObject[selection].server * 2)
+  moneyBar.width += (randomCardObject[selection].money * 2)
+  trustBar.width += (randomCardObject[selection].trust * 2)
 
   // Process higher limit
   if (serverBar.width > 200) {
@@ -548,19 +546,16 @@ const changeCard = (selection) => {
   }
   // Process lower limit
   if (trustBar.width <= 0) {
-    console.log('trust low')
     trustBar.width = 0
     image.src = imagePath('./endTrust.jpg')
     gameEnded = true
   }
   if (serverBar.width <= 0) {
-    console.log('server low')
     serverBar.width = 0
     image.src = imagePath('./endServer.jpg')
     gameEnded = true
   }
   if (moneyBar.width <= 0) {
-    console.log('money low')
     moneyBar.width = 0
     image.src = imagePath('./endMoney.jpg')
     gameEnded = true
