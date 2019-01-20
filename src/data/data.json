@@ -420,6 +420,21 @@
             "money": 15,
             "trust": 0
         }
+    }, {
+        "index": 27,
+        "title": "lunch",
+        "days": 0.2,
+        "src": "./lunch.jpg",
+        "deal": {
+            "server": 0,
+            "money": 0,
+            "trust": -20
+        },
+        "meh": {
+            "server": -5,
+            "money": 0,
+            "trust": 10
+        }
     }],
     "rare": {
         "index": 0,
