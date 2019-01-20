@@ -2,7 +2,7 @@
     "starting": {
         "index": 0,
         "title": "Rules and Start Card",
-        "src": "",
+        "src": "./rules.jpg",
         "days": 0,
         "deal": {
             "server": 0,
@@ -17,24 +17,414 @@
     },
     "common": [{
         "index": 0,
-        "title": "Card 1",
+        "title": "aliens",
+        "days": 0.5,
+        "src": "./aliens.jpg",
+        "deal": {
+            "server": -10,
+            "money": 0,
+            "trust": 0
+        },
+        "meh": {
+            "server": -5,
+            "money": 0,
+            "trust": -5
+        }
+    }, {
+        "index": 1,
+        "title": "antivirus",
+        "days": 1,
+        "src": "./antivirus.jpg",
+        "deal": {
+            "server": -20,
+            "money": 5,
+            "trust": 10
+        },
+        "meh": {
+            "server": 10,
+            "money": 0,
+            "trust": -15
+        }
+    }, {
+        "index": 2,
+        "title": "coin",
+        "days": 0.6,
+        "src": "./coin.jpg",
+        "deal": {
+            "server": 25,
+            "money": 25,
+            "trust": 25
+        },
+        "meh": {
+            "server": -20,
+            "money": -18,
+            "trust": -20
+        }
+    }, {
+        "index": 3,
+        "title": "dinner",
+        "days": 0.5,
+        "src": "./dinner.jpg",
+        "deal": {
+            "server": -200,
+            "money": -200,
+            "trust": -200
+        },
+        "meh": {
+            "server": 10,
+            "money": 10,
+            "trust": 0
+        }
+    }, {
+        "index": 4,
+        "title": "download",
+        "days": 1.5,
+        "src": "./download.jpg",
+        "deal": {
+            "server": -10,
+            "money": -5,
+            "trust": 10
+        },
+        "meh": {
+            "server": 0,
+            "money": -5,
+            "trust": -5
+        }
+    }, {
+        "index": 5,
+        "title": "encryption",
+        "days": 1,
+        "src": "./encryption.jpg",
+        "deal": {
+            "server": -15,
+            "money": 10,
+            "trust": 20
+        },
+        "meh": {
+            "server": 10,
+            "money": 0,
+            "trust": -10
+        }
+    }, {
+        "index": 6,
+        "title": "government",
+        "days": 0.5,
+        "src": "./government.jpg",
+        "deal": {
+            "server": -20,
+            "money": 0,
+            "trust": -10
+        },
+        "meh": {
+            "server": 0,
+            "money": -30,
+            "trust": 20
+        }
+    }, {
+        "index": 7,
+        "title": "hidden",
         "days": 0.3,
-        "src": "",
+        "src": "./hidden.jpg",
+        "deal": {
+            "server": -5,
+            "money": 0,
+            "trust": -5
+        },
+        "meh": {
+            "server": 0,
+            "money": -3,
+            "trust": 0
+        }
+    }, {
+        "index": 8,
+        "title": "mole",
+        "days": 2,
+        "src": "./mole.jpg",
+        "deal": {
+            "server": 0,
+            "money": 0,
+            "trust": 0
+        },
+        "meh": {
+            "server": 0,
+            "money": 0,
+            "trust": 0
+        }
+    }, {
+        "index": 9,
+        "title": "netcat",
+        "days": 0.9,
+        "src": "./netcat.jpg",
+        "deal": {
+            "server": -30,
+            "money": -10,
+            "trust": 0
+        },
+        "meh": {
+            "server": 6,
+            "money": -15,
+            "trust": 5
+        }
+    }, {
+        "index": 10,
+        "title": "overtime",
+        "days": 1,
+        "src": "./overtime.jpg",
+        "deal": {
+            "server": 30,
+            "money": -20,
+            "trust": 10
+        },
+        "meh": {
+            "server": -10,
+            "money": 10,
+            "trust": -5
+        }
+    }, {
+        "index": 11,
+        "title": "passwd",
+        "days": 1.3,
+        "src": "./passwd.jpg",
+        "deal": {
+            "server": -5,
+            "money": 0,
+            "trust": 5
+        },
+        "meh": {
+            "server": 0,
+            "money": -5,
+            "trust": -5
+        }
+    }, {
+        "index": 12,
+        "title": "passwordLeak",
+        "days": 0.5,
+        "src": "./passwordLeak.jpg",
+        "deal": {
+            "server": 20,
+            "money": -50,
+            "trust": 10
+        },
+        "meh": {
+            "server": 0,
+            "money": 5,
+            "trust": 5
+        }
+    }, {
+        "index": 13,
+        "title": "PFishing",
+        "days": 1.5,
+        "src": "./PFishing.jpg",
         "deal": {
             "server": -10,
             "money": 5,
             "trust": 5
         },
         "meh": {
-            "server": 20,
+            "server": 5,
+            "money": -5,
+            "trust": 0
+        }
+    }, {
+        "index": 14,
+        "title": "pleading",
+        "days": 3,
+        "src": "./pleading.jpg",
+        "deal": {
+            "server": 15,
+            "money": 15,
+            "trust": 15
+        },
+        "meh": {
+            "server": 0,
+            "money": 0,
+            "trust": 0
+        }
+    }, {
+        "index": 15,
+        "title": "prince",
+        "days": 0.8,
+        "src": "./prince.jpg",
+        "deal": {
+            "server": -20,
+            "money": -10,
+            "trust": -10
+        },
+        "meh": {
+            "server": -10,
+            "money": -5,
+            "trust": -5
+        }
+    }, {
+        "index": 16,
+        "title": "project",
+        "days": 1,
+        "src": "./project.jpg",
+        "deal": {
+            "server": -200,
+            "money": -200,
+            "trust": -200
+        },
+        "meh": {
+            "server": 0,
+            "money": 0,
+            "trust": -10
+        }
+    }, {
+        "index": 17,
+        "title": "rmrf",
+        "days": 0.5,
+        "src": "./rmrf.jpg",
+        "deal": {
+            "server": -20,
+            "money": -10,
+            "trust": 0
+        },
+        "meh": {
+            "server": -20,
+            "money": -10,
+            "trust": -5
+        }
+    }, {
+        "index": 18,
+        "title": "robots",
+        "days": 1,
+        "src": "./robots.jpg",
+        "deal": {
+            "server": -5,
+            "money": 5,
+            "trust": 5
+        },
+        "meh": {
+            "server": 5,
+            "money": -5,
+            "trust": -10
+        }
+    }, {
+        "index": 19,
+        "title": "savingCosts",
+        "days": 0.5,
+        "src": "./savingCosts.jpg",
+        "deal": {
+            "server": -20,
+            "money": 30,
+            "trust": 10
+        },
+        "meh": {
+            "server": 10,
             "money": -20,
             "trust": -10
         }
+    }, {
+        "index": 20,
+        "title": "sql",
+        "days": 0.8,
+        "src": "./sql.jpg",
+        "deal": {
+            "server": 0,
+            "money": -20,
+            "trust": 30
+        },
+        "meh": {
+            "server": 0,
+            "money": 10,
+            "trust": -20
+        }
+    }, {
+        "index": 21,
+        "title": "sudo",
+        "days": 3,
+        "src": "./sudo.jpg",
+        "deal": {
+            "server": -200,
+            "money": -200,
+            "trust": -200
+        },
+        "meh": {
+            "server": -5,
+            "money": 0,
+            "trust": -10
+        }
+    }, {
+        "index": 22,
+        "title": "testimony",
+        "days": 1.2,
+        "src": "./testimony.jpg",
+        "deal": {
+            "server": 0,
+            "money": -10,
+            "trust": 30
+        },
+        "meh": {
+            "server": 0,
+            "money": 10,
+            "trust": -25
+        }
+    }, {
+        "index": 23,
+        "title": "updates",
+        "days": 0.2,
+        "src": "./updates.jpg",
+        "deal": {
+            "server": 20,
+            "money": -10,
+            "trust": 0
+        },
+        "meh": {
+            "server": -10,
+            "money": 15,
+            "trust": 0
+        }
+    }, {
+        "index": 24,
+        "title": "hate",
+        "days": 0,
+        "src": "./hate.jpg",
+        "deal": {
+            "server": 15,
+            "money": 0,
+            "trust": -15
+        },
+        "meh": {
+            "server": 0,
+            "money": 0,
+            "trust": 5
+        }
+    }, {
+        "index": 25,
+        "title": "intelligence",
+        "days": 0.2,
+        "src": "./intelligence.jpg",
+        "deal": {
+            "server": 0,
+            "money": 0,
+            "trust": -15
+        },
+        "meh": {
+            "server": -5,
+            "money": -5,
+            "trust": 5
+        }
+    }, {
+        "index": 26,
+        "title": "updates",
+        "days": 0.2,
+        "src": "./updates.jpg",
+        "deal": {
+            "server": 20,
+            "money": -10,
+            "trust": 0
+        },
+        "meh": {
+            "server": -10,
+            "money": 15,
+            "trust": 0
+        }
     }],
-    "rare": [{
+    "rare": {
         "index": 0,
-        "title": "Rare 1",
-        "src": "",
+        "title": "rareLucky",
+        "src": "./rareLucky.jpg",
         "days": 1,
         "deal": {
             "server": 40,
@@ -42,9 +432,9 @@
             "trust": 40
         },
         "meh": {
-            "server": 0,
-            "money": 0,
-            "trust": 0
+            "server": 40,
+            "money": 30,
+            "trust": 40
         }
-    }]
+    }
 }
