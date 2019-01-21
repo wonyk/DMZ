@@ -304,25 +304,26 @@ kontra.init('game')
 const canvas = kontra.canvas
 const context = kontra.context
 // Thanks to Pixel Font for this library. Link: https://github.com/PaulBGD/PixelFont
-function draw (posX, posY, string, size) {
+const draw = (posX, posY, string, size) => {
   context.clearRect(posX, posY, canvas.width, canvas.height)
-  var needed = []
+  let needed = []
+  let letter
   string = string.toUpperCase() // because I only did uppercase letters
-  for (var i = 0; i < string.length; i++) {
-    var letter = letters[string.charAt(i)]
+  for (let i = 0; i < string.length; i++) {
+    letter = letters[string.charAt(i)]
     if (letter) { // because there's letters I didn't do
       needed.push(letter)
     }
   }
   context.fillStyle = 'white'
-  var currX = posX
-  for (i = 0; i < needed.length; i++) {
+  let currX = posX
+  for (let i = 0; i < needed.length; i++) {
     letter = needed[i]
-    var currY = posY
-    var addX = 0
-    for (var y = 0; y < letter.length; y++) {
-      var row = letter[y]
-      for (var x = 0; x < row.length; x++) {
+    let currY = posY
+    let addX = 0
+    for (let y = 0; y < letter.length; y++) {
+      let row = letter[y]
+      for (let x = 0; x < row.length; x++) {
         if (row[x]) {
           context.fillRect(currX + x * size, currY, size, size)
         }
@@ -456,8 +457,8 @@ sequence2 = new TinyMusic.Sequence(ac, tempo, harmony)
 sequence3 = new TinyMusic.Sequence(ac, tempo, bass)
 
 // set staccato and smoothing values for maximum coolness
-sequence1.staccato = 0
-sequence1.smoothing = 0.5
+sequence1.waveType = 'sine'
+sequence1.staccato = 0.55
 sequence2.staccato = 0.55
 sequence3.staccato = 0.05
 sequence3.smoothing = 0.4
@@ -480,7 +481,7 @@ sequence3.treble.gain.value = -2
 sequence3.treble.frequency.value = 1400
 
 // Apply waveType
-sequence1.waveType = 'sine'
+// sequence1.waveType = 'sine'
 
 // start the lead part immediately
 sequence1.play(when)
@@ -514,14 +515,15 @@ MAIN GAME FUNCTION
 // Change Card and Update Score
 const changeCard = (selection) => {
   const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max))
-  if (arrayCommon.length < 2 && !gameEnded) {
-    arrayCommon = common.slice(0)
-  }
+  // if (arrayCommon.length < 2 && !gameEnded) {
+  //   arrayCommon = common.slice(0)
+  // }
   // For starting rule cards
   if (randomCardObject.title === 'Rules and Start Card') {
     mainPicIndex = getRandomInt(arrayCommon.length)
     randomCardObject = arrayCommon[mainPicIndex]
     image.src = imagePath(randomCardObject.src)
+    console.log(mainPicIndex)
     return
   }
   // If it is one of the ending cards, do nothing
@@ -546,22 +548,17 @@ const changeCard = (selection) => {
   }
   // Process lower limit
   if (trustBar.width <= 0) {
-    trustBar.width = 0
     image.src = imagePath('./endTrust.jpg')
+    trustBar.width = 0
     gameEnded = true
-    return
-  }
-  if (serverBar.width <= 0) {
-    serverBar.width = 0
+  } else if (serverBar.width <= 0) {
     image.src = imagePath('./endServer.jpg')
+    serverBar.width = 0
     gameEnded = true
-    return
-  }
-  if (moneyBar.width <= 0) {
-    moneyBar.width = 0
+  } else if (moneyBar.width <= 0) {
     image.src = imagePath('./endMoney.jpg')
+    moneyBar.width = 0
     gameEnded = true
-    return
     // This part below comes only if the player have low health but not dead
   } else if ((trustBar.width <= 20 || moneyBar.width <= 20 || serverBar.width <= 20) && !rareAppeared && !gameEnded) {
     // Some help so that players dont die too quickly
@@ -581,6 +578,7 @@ const changeCard = (selection) => {
     arrayCommon.splice(mainPicIndex, 1)
     score += randomCardObject.days
     mainPicIndex = getRandomInt(arrayCommon.length)
+    console.log(mainPicIndex)
     randomCardObject = arrayCommon[mainPicIndex]
     image.src = imagePath(randomCardObject.src)
   }
@@ -697,9 +695,9 @@ let mainImage = kontra.sprite({
 GAMELOOP
 ========================================================================================
 */
-// let startLoop = function () {
 let loop = kontra.gameLoop({ // create the main game loop
   update () { // update the game state
+    // mainImage.update()
     // highscore.update()
     // serverBar.update()
   },
